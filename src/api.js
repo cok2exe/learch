@@ -13,3 +13,6 @@ axios.interceptors.response.use(
 )
 
 export const getChampions = async () => await axios.get("/data/ko_KR/champion.json")
+
+export const getChampionRotations = async () =>
+  await axios.get("/lol/platform/v3/champion-rotations")

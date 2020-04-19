@@ -8,4 +8,12 @@ module.exports = function(app) {
       changeOrigin: true
     })
   )
+
+  app.use(
+    '/lol',
+    createProxyMiddleware({
+      target: 'https://kr.api.riotgames.com/',
+      changeOrigin: true
+    })
+  )
 }
