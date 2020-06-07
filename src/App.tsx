@@ -4,7 +4,7 @@ import { IFreeChampionIds, IChampionObject, IChampion } from './interface/rotati
 import { Card, Col, Layout, Row, Typography } from 'antd'
 
 function App() {
-  const [rotationChampions, setRotationChampions] = useState<Array<any>>([]);
+  const [rotationChampions, setRotationChampions] = useState<Array<IChampion>>([]);
 
   const setChampionRotation = async ():Promise<void> => {
     try {
