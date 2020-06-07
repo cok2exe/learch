@@ -1,20 +1,18 @@
-import axios, { AxiosResponse } from "axios"
-import {IChampionRotationIds} from "./interface/rotation";
+import axios from 'axios'
+import { IFreeChampionIds, IChampionJson } from './interface/rotation'
 
-
-
-axios.defaults.headers["X-Riot-Token"] = process.env.REACT_APP_APIKEY;
+axios.defaults.headers["X-Riot-Token"] = process.env.REACT_APP_APIKEY
 
 axios.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response.data
   },
 
   (reject) => {
-    throw reject.response.data;
+    throw reject.response.data
   }
 )
 
-export const getChampions:() => Promise<AxiosResponse<any>> = async () => await axios.get("/data/ko_KR/champion.json");
+export const getChampions:() => Promise<IChampionJson> = async () => await axios.get("/data/ko_KR/champion.json")
 
-export const getChampionRotations = async (): Promise<IChampionRotationIds> => await axios.get("/lol/platform/v3/champion-rotations");
+export const getChampionRotations = async (): Promise<IFreeChampionIds> => await axios.get("/lol/platform/v3/champion-rotations")

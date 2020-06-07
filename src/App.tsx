@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { getChampionRotations, getChampions } from './api'
-import {IChampionRotationIds, IDynamicObject} from "./interface/rotation";
+import { IFreeChampionIds, IChampionObject, IChampion } from './interface/rotation'
 
 function App() {
   const [rotationChampions, setRotationChampions] = useState<Array<any>>([]);
 
   const setChampionRotation = async ():Promise<void> => {
     try {
-      const champions = await getChampions();
+      const champions = await getChampions()
 
-      const { freeChampionIds }:IChampionRotationIds = await getChampionRotations();
-      let championObject:IDynamicObject = {};
-      const championData = champions.data;
+      const { freeChampionIds }:IFreeChampionIds = await getChampionRotations()
+      let championObject:IChampionObject = {}
+      const championData = champions.data
       for (let key in championData) {
         if (championData.hasOwnProperty(key)) {
-          const champion = championData[key];
+          const champion = championData[key]
           championObject[champion.key] = champion
         }
       }
 
-      const _rotationChampions:Array<any> = [];
+      const _rotationChampions:Array<IChampion> = []
       freeChampionIds.forEach((freeId:number) => {  // 15
-        _rotationChampions.push(championObject[freeId]);
+        _rotationChampions.push(championObject[freeId])
       });
       setRotationChampions(_rotationChampions)
     } catch (err) {
@@ -30,10 +30,8 @@ function App() {
   };
 
   useEffect(() => {
-    ;(async () => {
-      await setChampionRotation();
-    })()
-  }, []);
+    setChampionRotation()
+  }, [])
 
   return (
     <div className="container">
