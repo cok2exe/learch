@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { getChampionRotations, getChampions } from './api'
-import { AxiosResponse } from "axios";
-import { IFreeChampionIds } from "./interface/rotation";
+import {IChampionRotationIds, IDynamicObject} from "./interface/rotation";
 
 function App() {
-  const [rotationChampions, setRotationChampions] = useState([]);
+  const [rotationChampions, setRotationChampions] = useState<Array<any>>([]);
 
   const setChampionRotation = async ():Promise<void> => {
     try {
       const champions = await getChampions();
 
-      const { freeChampionIds }:Array<IFreeChampionIds> = await getChampionRotations();
-      let championObject:Object = {};
+      const { freeChampionIds }:IChampionRotationIds = await getChampionRotations();
+      let championObject:IDynamicObject = {};
       const championData = champions.data;
       for (let key in championData) {
         if (championData.hasOwnProperty(key)) {
@@ -20,7 +19,7 @@ function App() {
         }
       }
 
-      const _rotationChampions:Array<Object> = [];
+      const _rotationChampions:Array<any> = [];
       freeChampionIds.forEach((freeId:number) => {  // 15
         _rotationChampions.push(championObject[freeId]);
       });

@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from "axios"
-import { IChampionRotationIds } from "./interface/rotation";
+import {IChampionRotationIds} from "./interface/rotation";
+
+
 
 axios.defaults.headers["X-Riot-Token"] = process.env.REACT_APP_APIKEY;
 
@@ -13,6 +15,6 @@ axios.interceptors.response.use(
   }
 )
 
-export const getChampions = async () => await axios.get("/data/ko_KR/champion.json");
+export const getChampions:() => Promise<AxiosResponse<any>> = async () => await axios.get("/data/ko_KR/champion.json");
 
-export const getChampionRotations = async ():Promise<AxiosResponse> => await axios.get("/lol/platform/v3/champion-rotations")
+export const getChampionRotations = async (): Promise<IChampionRotationIds> => await axios.get("/lol/platform/v3/champion-rotations");
