@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getChampionRotations, getChampions } from './api'
 import { IFreeChampionIds, IChampionObject, IChampion } from './interface/rotation'
-import { Card, Col, Layout, Row, Typography } from 'antd'
 
 function App() {
   const [rotationChampions, setRotationChampions] = useState<Array<IChampion>>([]);
@@ -34,27 +33,22 @@ function App() {
     setChampionRotation()
   }, [])
 
-  const { Header, Content, Footer } = Layout
-
   return (
-    <Layout>
-      <Header>LEARCH</Header>
-      <Content>
-        <Typography.Title level={2}>챔피언 로테이션</Typography.Title>
+    <div>
+      <h1>LEARCH</h1>
+      <div>
+        <h2>챔피언 로테이션</h2>
 
-        <Row gutter={[16, 16]} justify="center">
-          {rotationChampions.map(champion => <Col key={champion.key} span={7}>
-            <Card
-              hoverable
-              cover={<img src={`http://ddragon.leagueoflegends.com/cdn/10.8.1/img/champion/${champion.id}.png`} alt={champion.name}/>}
-            >
-              <Card.Meta title={champion.name} description={champion.title}/>
-            </Card>
-          </Col>)}
-        </Row>
-      </Content>
-      <Footer>learch by cok2exe</Footer>
-    </Layout>
+        <div>
+          {rotationChampions.map(champion => <div key={champion.key}>
+            <div>
+              <img src={`http://ddragon.leagueoflegends.com/cdn/10.8.1/img/champion/${champion.id}.png`} alt={champion.name}/>
+              <h3 title={champion.name}>{champion.name}</h3>
+            </div>
+          </div>)}
+        </div>
+      </div>
+    </div>
   )
 }
 
