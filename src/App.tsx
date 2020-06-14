@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { getChampionRotations, getChampions } from './api'
+import { Champions } from './api'
 import { IFreeChampionIds, IChampionObject, IChampion } from './interface/rotation'
 
-function App() {
+const App:React.FC = () => {
   const [rotationChampions, setRotationChampions] = useState<Array<IChampion>>([]);
 
   const setChampionRotation = async ():Promise<void> => {
     try {
-      const champions = await getChampions()
+      const champions = await Champions.getChampions()
 
-      const { freeChampionIds }:IFreeChampionIds = await getChampionRotations()
+      const { freeChampionIds }:IFreeChampionIds = await Champions.getChampionRotations()
       let championObject:IChampionObject = {}
       const championData = champions.data
       for (let key in championData) {
