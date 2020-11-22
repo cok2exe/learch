@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Redirect, Route, RouteComponentProps, RouteProps, Switch } from 'react-router-dom'
 import Login from './pages/login'
 import App from './App'
+import storage, { keys } from './utils/storage'
 
 // 참고: https://eunajjing.github.io/2019/06/04/router/
 type RoutePageComponent =
@@ -16,7 +17,7 @@ const Routes:React.FC = () => {
   const PrivateRoute:React.FC<IPrivateRouteProps & RouteProps> = ({ page: Component, ...rest }) => <Route
     {...rest}
     render={props =>
-      localStorage.getItem('lol_nickname') ? (
+      storage.get(keys.nickname) ? (
         <Component {...props} />
       ) : <Redirect
         to={{

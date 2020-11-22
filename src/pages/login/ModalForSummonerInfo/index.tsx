@@ -12,6 +12,8 @@ import {
 } from '@material-ui/core'
 import { ISummonerInfo } from '../../../interface/summoner'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import storage, { keys } from '../../../utils/storage'
+import { useHistory } from 'react-router'
 
 interface IModalForSummonerInfoProps {
   visible: boolean
@@ -36,6 +38,12 @@ const ModalForSummonerInfo: React.FC<IModalForSummonerInfoProps> = ({
 }) => {
   const { name, summonerLevel } = summonerInfo
   const classes = useStyles()
+  const history = useHistory()
+
+  const learch = () => {
+    storage.set(keys.nickname, name)
+    history.push('/')
+  }
 
   return (
     <Dialog open={visible} onClose={onClose} fullWidth maxWidth="xs">
@@ -53,7 +61,7 @@ const ModalForSummonerInfo: React.FC<IModalForSummonerInfoProps> = ({
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" variant="contained" disableElevation>
+        <Button color="primary" variant="contained" disableElevation onClick={learch}>
           LEARCH!
         </Button>
         <Button onClick={onClose} variant="contained" disableElevation>
