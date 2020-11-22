@@ -10,6 +10,7 @@ const PoroLoader = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   ${flex};
+  z-index: 999;
 `
 
 export default function withLoader (WrappedComponent: React.FC) {

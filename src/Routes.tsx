@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Redirect, Route, RouteComponentProps, RouteProps, Switch } from 'react-router-dom'
 import Login from './pages/login'
-import App from './App'
+import Rotation from './pages/rotation'
 import storage, { keys } from './utils/storage'
 
 // 참고: https://eunajjing.github.io/2019/06/04/router/
@@ -34,7 +34,7 @@ const Routes:React.FC = () => {
         <Route exact path="/login" page={Login}>
           <Login />
         </Route>
-        <PrivateRoute exact path="/" page={App} />
+        <PrivateRoute exact path="/" page={Rotation} />
       </Switch>
     </Router>
   )
