@@ -1,10 +1,19 @@
 import React, { useState } from 'react'
-import styles from './index.module.scss'
 import { TextField } from '@material-ui/core'
 import { ILoadingFunction } from '../../interface/common'
 import ModalForSummonerInfo from './ModalForSummonerInfo'
 import withLoader from '../../withLoader'
 import { Summoner } from '../../api'
+import styled from 'styled-components'
+import { flex } from '../../styles/values'
+
+const StyledLogin = styled.div`
+  ${flex};
+  min-height: 100vh;
+`
+const StyledForm = styled.form`
+  max-width: 500px;
+`
 
 const Login: React.FC<ILoadingFunction> = ({ setLoading }) => {
   const [name, setName] = useState('')
@@ -31,8 +40,8 @@ const Login: React.FC<ILoadingFunction> = ({ setLoading }) => {
   }
 
   return (
-    <div className={styles.login}>
-      <form className={styles.form} autoComplete="off" onSubmit={getSummonerInfo}>
+    <StyledLogin>
+      <StyledForm autoComplete="off" onSubmit={getSummonerInfo}>
         <img src={`${process.env.PUBLIC_URL}/images/lol_logo.png`} alt="league of legends" />
         <TextField
           label="롤 닉네임"
@@ -43,7 +52,7 @@ const Login: React.FC<ILoadingFunction> = ({ setLoading }) => {
           variant="outlined"
           fullWidth
         />
-      </form>
+      </StyledForm>
 
       <ModalForSummonerInfo
         visible={visible}
@@ -51,7 +60,7 @@ const Login: React.FC<ILoadingFunction> = ({ setLoading }) => {
         profileIconSrc={profileIconSrc}
         onClose={() => setVisible(false)}
       />
-    </div>
+    </StyledLogin>
   )
 }
 
