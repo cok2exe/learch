@@ -31,13 +31,10 @@ const Routes:React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login">
+        <Route exact path="/login" page={Login}>
           <Login />
         </Route>
         <PrivateRoute exact path="/" page={App} />
-        {/*<PrivateRoute exact path="/">*/}
-        {/*  <App />*/}
-        {/*</PrivateRoute>*/}
       </Switch>
     </Router>
   )
