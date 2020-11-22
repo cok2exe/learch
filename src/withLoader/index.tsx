@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ComponentType, useState } from 'react'
 import styled from 'styled-components'
 import { flex } from '../styles/values'
 
@@ -13,7 +13,7 @@ const PoroLoader = styled.div`
   z-index: 999;
 `
 
-export default function withLoader (WrappedComponent: React.FC) {
+const withLoader = <P, JSXProps = P>(WrappedComponent: ComponentType<P>) => {
   return function (props: any) {
     const [loading, setLoading] = useState(false)
 
@@ -22,10 +22,12 @@ export default function withLoader (WrappedComponent: React.FC) {
         <WrappedComponent {...props} setLoading={setLoading} />
         {loading && (
           <PoroLoader>
-            <img src={`${process.env.PUBLIC_URL}/images/poro.gif`} alt="poro"/>
+            <img src={`${process.env.PUBLIC_URL}/images/poro.gif`} alt="poro" />
           </PoroLoader>
         )}
       </>
     )
   }
 }
+
+export default withLoader

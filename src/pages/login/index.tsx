@@ -64,5 +64,4 @@ const Login: React.FC<ILoadingFunction> = ({ setLoading }) => {
   )
 }
 
-// @ts-ignore
 export default withLoader(Login)
